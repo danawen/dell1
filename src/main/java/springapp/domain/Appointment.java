@@ -7,7 +7,6 @@ public class Appointment {
 	private final Integer clientId;
 	private final Integer petId;
 	private Enum apptReason;
-	private Integer apptDuration;
 	private String comments;
 	private Boolean scheduleComplete; 
 	
@@ -33,14 +32,6 @@ public class Appointment {
 
 	public void setApptReason(Enum apptReason) {
 		this.apptReason = apptReason;
-	}
-
-	public Integer getApptDuration() {
-		return apptDuration;
-	}
-
-	public void setApptDuration(Integer apptDuration) {
-		this.apptDuration = apptDuration;
 	}
 
 	public String getComments() {
