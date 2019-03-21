@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import springapp.command.AppointmentCommand;
@@ -18,6 +19,7 @@ import springapp.service.PetService;
 
 
 @Controller
+@RequestMapping("/appointments")
 public class AppointmentController {
 	
 	private Logger logger = LoggerFactory.getLogger(PetController.class);
@@ -26,7 +28,7 @@ public class AppointmentController {
     @Autowired
 	AppointmentService appointmentService;
 	
-	@GetMapping("/appointments")
+	@GetMapping
 	public String get() {
         return "appointments/listAppointments";
    }
