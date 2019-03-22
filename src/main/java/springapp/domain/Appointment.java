@@ -8,7 +8,7 @@ public class Appointment {
 	private final Integer petId;
 	private Enum apptReason;
 	private String comments;
-	private Boolean scheduleComplete; 
+	private Boolean scheduleComplete;
 	
 	public Appointment(Integer myID, Integer myClient, Integer myPet ){
 		
@@ -49,6 +49,18 @@ public class Appointment {
 	public void setScheduleComplete(Boolean scheduleComplete) {
 		this.scheduleComplete = scheduleComplete;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public Integer getClientId() {
+		return clientId;
+	}
+	public Integer getPetId() {
+		return petId;
+	}
+
 
 
 	

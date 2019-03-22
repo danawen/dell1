@@ -1,5 +1,6 @@
 package springapp.command;
 
+import springapp.domain.Appointment;
 import springapp.domain.Client;
 
 /**
@@ -8,10 +9,10 @@ import springapp.domain.Client;
  */
 public class AppointmentCommand {
 	
-	private final Integer id;
+	private Integer id;
 	private java.util.Date apptDateTime;
-	private final Integer clientId;
-	private final Integer petId;
+	private Integer clientId;
+	private Integer petId;
 	private Enum apptReason;
 	private String comments;
 	private Boolean scheduleComplete; 
@@ -22,10 +23,10 @@ public class AppointmentCommand {
 	 */
 	public AppointmentCommand(Appointment appointment) {
 		if(appointment != null) {
-			this.id = appointment.id;
-			this.apptDateTime = appointment.getApptDateTime;
-			this.clientID = appointment.clientId;
-			this.petID = appointment.petID;
+			this.id = appointment.getId();
+			this.apptDateTime = appointment.getApptDateTime();
+			this.clientId = appointment.getClientId();
+			this.petId = appointment.getPetId();
 			this.apptReason = appointment.getApptReason();
 			this.comments = appointment.getComments();
 			this.scheduleComplete = appointment.getScheduleComplete();
@@ -53,7 +54,7 @@ public class AppointmentCommand {
 	 * @param client id is the id of the client
 	 */
 	public void setClientID(Integer clientID) {
-		this.clientID = clientID;
+		this.clientId = clientID;
 	}
 	
 	/**
@@ -61,7 +62,7 @@ public class AppointmentCommand {
 	 * @param pet id is the id of the pet
 	 */
 	public void setPetID(Integer petID) {
-		this.petID = petID;
+		this.petId = petID;
 	}
 	
 	/**
@@ -107,20 +108,20 @@ public class AppointmentCommand {
 	/**
 	 * @return the client address
 	 */
-	public integer getClientID() {
-		return ClientID;
+	public Integer getClientID() {
+		return clientId;
 	}
 
 	/**
 	 * @return the ID for the pet
 	 */
-	public integer getPetID() {
-		return PetID;
+	public Integer getPetID() {
+		return petId;
 	}
 	/**
 	 * @return the reason for appt
 	 */
-	public enum getApptReason() {
+	public Enum getApptReason() {
 		return apptReason;
 	}
   
@@ -133,7 +134,7 @@ public class AppointmentCommand {
 	/**
 	 * @return true/false if schedule is compplete
 	 */
-	public String getScheduleComplete() {
+	public Boolean getScheduleComplete() {
 		return scheduleComplete;
 	}
 	
