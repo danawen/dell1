@@ -21,22 +21,27 @@
 							<thead>
 								<tr>
 									<th scope="col">Id</th>
-									<th scope="col">Reason</th>
 									<th scope="col">Time</th>
 									<th scope="col">Duration</th>
-									<th scope="col">Comment</th>
-									<th scope="col">CompletionStatus</th>
+									<th scope="col">Client Id</th>
+							<!-- 	<th scope="col">Client Name</th>   -->
+									<th scope="col">Pet Id</th>
+							<!--		<th scope="col">Pet Name</th>  -->
+									<th scope="col">Reason</th>								
+									<th scope="col">Comments</th>
 									
 								</tr>
 							</thead>
 							<tbody>	
 								<tr data-th-each="appointment : ${appointments}">
-									<td data-th-text="${appointment.id}">...</td>								
-									<td data-th-text="${appointment.reason}">...</td>
-									<td data-th-text="${appointment.apptDateTime}">...</td>
-									<td data-th-text="${appointment.duration}">...</td>
+									<td data-th-text="${appointment.id}">...</td>		
+									<td data-th-text="${appointment.apptDateTime}">...</td>		
+								    <td data-th-text="${appointment.duration}">...</td>			
+								    <td data-th-text="${appointment.clientId}">...</td>	
+                                     <td data-th-text="${appointment.petId}">...</td>	
+									<td data-th-text="${appointment.reason}">...</td>					
 									<td data-th-text="${appointment.comment}">...</td>			
-									<td data-th-text="${appointment.completionStatus}">...</td>									
+														
 															
 								</tr>
 							</tbody>
