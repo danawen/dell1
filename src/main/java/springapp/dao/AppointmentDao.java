@@ -74,7 +74,7 @@ public class AppointmentDao {
 					PreparedStatement statement = con.prepareStatement("INSERT INTO appointments(pet_id, client_id, reason, appt_time, duration, comments) VALUES (?, ?, ?, ?, ?, ?)");
 					statement.setInt(1, appointment.getPetId());
 					statement.setInt(2, appointment.getClientId());
-					statement.setString(3, "Boring");
+					statement.setString(3, appointment.getReason().toString());
 					statement.setTimestamp(4, appointment.getTime());
 					statement.setInt(5, appointment.getDuration());
 					statement.setString(6, appointment.getComments());
