@@ -59,10 +59,13 @@ public class Appointment {
 
 	public Integer getClientId() {
 		return clientId;
+	}	
+	
+	public Integer getDuration() {
+		return this.duration;
 	}
 
 	public Integer getDuration() {
 		return duration;
-	}	
 	
 }
