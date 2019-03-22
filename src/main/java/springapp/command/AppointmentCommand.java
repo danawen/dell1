@@ -1,7 +1,9 @@
 package springapp.command;
 
+import java.sql.Timestamp;
 import springapp.domain.Appointment;
 import springapp.domain.Client;
+import springapp.domain.Reason;
 
 /**
  * This command class is used to pass information back and force between the client and the server
@@ -10,133 +12,82 @@ import springapp.domain.Client;
 public class AppointmentCommand {
 	
 	private Integer id;
-	private java.util.Date apptDateTime;
-	private Integer clientId;
 	private Integer petId;
-	private Enum apptReason;
+	private Integer clientId;
+	private Reason reason;
+	private Timestamp time;
+	private Integer duration;
 	private String comments;
-	private Boolean scheduleComplete; 
-
+	
 	/**
 	 * Creates a command object that has the initial values the same as the appointment passed in
-	 * @param client the client to initialize the command object with
+	 * @param appointment the appointment to initialize the command object with
 	 */
 	public AppointmentCommand(Appointment appointment) {
 		if(appointment != null) {
-			this.id = appointment.getId();
-			this.apptDateTime = appointment.getApptDateTime();
-			this.clientId = appointment.getClientId();
+			id = appointment.getId();
 			this.petId = appointment.getPetId();
-			this.apptReason = appointment.getApptReason();
+			this.clientId = appointment.getClientId();
+			this.reason = appointment.getReason();
+			this.time = appointment.getTime();
+			this.duration = appointment.getDuration();
 			this.comments = appointment.getComments();
-			this.scheduleComplete = appointment.getScheduleComplete();
 		}
 	}
-
-	/**
-	 * Set the id of the appt
-	 * @param id the appt id
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	
-	/**
-	 * Set the appt date time of the client
-	 * @param apptDateTime is the date and time of the appt
-	 */
-	public void setApptDateTime(java.util.Date apptDateTime) {
-		this.apptDateTime= apptDateTime;
-	}
-
-	/**
-	 * Set the client id
-	 * @param client id is the id of the client
-	 */
-	public void setClientID(Integer clientID) {
-		this.clientId = clientID;
-	}
-	
-	/**
-	 * Set the pet id
-	 * @param pet id is the id of the pet
-	 */
-	public void setPetID(Integer petID) {
-		this.petId = petID;
-	}
-	
-	/**
-	 * Set the reason for the appt
-	 * @param appt reason is 
-	 */
-	public void setApptReason(Enum apptReason) {
-		this.apptReason = apptReason;
-	}
-	
-	/**
-	 * Set the reason for the appt
-	 * @param appt reason is 
-	 */
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-	
-	/**
-	 * Set the reason for the appt
-	 * @param appt reason is 
-	 */
-	public void setScheduleComplete(boolean scheduleComplete) {
-		this.scheduleComplete = scheduleComplete;
-	}
-	
-	
-
-	/**
-	 * @return the client id, returns null if this client is new and not persisted to the database yet
-	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/**
-	 * @return the name of the client
-	 */
-	public java.util.Date getApptDateTime() {
-		return apptDateTime;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	/**
-	 * @return the client address
-	 */
-	public Integer getClientID() {
+	public Integer getPetId() {
+		return petId;
+	}
+
+	public void setPetId(Integer petId) {
+		this.petId = petId;
+	}
+	
+	public Integer getClientId() {
 		return clientId;
 	}
 
-	/**
-	 * @return the ID for the pet
-	 */
-	public Integer getPetID() {
-		return petId;
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
-	/**
-	 * @return the reason for appt
-	 */
-	public Enum getApptReason() {
-		return apptReason;
+
+	public Reason getReason() {
+		return reason;
 	}
-  
-	/**
-	 * @return the appt's comments
-	 */
+
+	public void setReason(Reason reason) {
+		this.reason = reason;
+	}
+
+	public Timestamp getTime() {
+		return time;
+	}
+
+	public void setTime(Timestamp time) {
+		this.time = time;
+	}
+
+	public Integer getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
 	public String getComments() {
 		return comments;
 	}
-	/**
-	 * @return true/false if schedule is compplete
-	 */
-	public Boolean getScheduleComplete() {
-		return scheduleComplete;
+
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
-	
-	
 }
