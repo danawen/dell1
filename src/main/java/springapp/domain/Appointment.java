@@ -1,6 +1,5 @@
 package springapp.domain;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 public class Appointment {
 	private final Integer id;
@@ -17,7 +16,7 @@ public class Appointment {
 		this.petId = myPetId;
 		this.clientId = myClientId;		
 		this.reason = myReason;
-		this.time = myApptTime;
+		this.time = new Timestamp(System.currentTimeMillis());
 		this.duration = myDuration;
 		this.comments = myComments;
 		
@@ -39,14 +38,6 @@ public class Appointment {
 		this.time = apptDateTime;
 	}
 
-	public Integer getDuration() {
-		return duration;
-	}
-
-	public void setDuration(Integer apptDuration) {
-		this.duration = apptDuration;
-	}
-
 	public String getComments() {
 		return comments;
 	}
@@ -65,8 +56,6 @@ public class Appointment {
 
 	public Integer getClientId() {
 		return clientId;
-	}
-
-	
+	}	
 	
 }
