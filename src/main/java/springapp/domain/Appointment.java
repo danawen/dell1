@@ -45,6 +45,9 @@ public class Appointment {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
 
 	public Integer getId() {
 		return id;
@@ -56,6 +59,18 @@ public class Appointment {
 
 	public Integer getClientId() {
 		return clientId;
+	}
+
+	public Integer getDuration() {
+		// TODO Auto-generated method stub
+		return duration;
 	}	
+	
+	public Integer getDuration() {
+		return this.duration;
+	}
+
+	public Integer getDuration() {
+		return duration;
 	
 }

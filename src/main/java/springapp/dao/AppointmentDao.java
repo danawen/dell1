@@ -18,6 +18,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import springapp.domain.Appointment;
+import springapp.domain.Client;
 import springapp.domain.Gender;
 import springapp.domain.Pet;
 import springapp.domain.Reason;
@@ -51,14 +52,28 @@ public class AppointmentDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
     	
-    //TODO
-	//public List<Appointment> list(){
+    
+	public List<Appointment> list(){
+ 
+		List<Appointment> queryResult = jdbcTemplate.query("select id, pet_id, client_id, reason, appt_time, duration, comments from appointments",
+				simpleMapper);
+		
+		return queryResult;
+	}
 
-	//}
+	
 
-	//TODO
 	public Appointment get(int id) {
-		return null;				
+		List<Appointment> queryResult = jdbcTemplate.query("select id, pet_id, client_id, reason, appt_time, duration, comments from appointments where id =  ?", 
+				new Object[] {id},
+				simpleMapper);
+		
+		if(queryResult.isEmpty()) {
+			return null;
+		}
+		
+		return queryResult.get(0);
+						
 	}
 	
 	public Appointment save(Appointment appointment) {
@@ -74,7 +89,7 @@ public class AppointmentDao {
 					PreparedStatement statement = con.prepareStatement("INSERT INTO appointments(pet_id, client_id, reason, appt_time, duration, comments) VALUES (?, ?, ?, ?, ?, ?)");
 					statement.setInt(1, appointment.getPetId());
 					statement.setInt(2, appointment.getClientId());
-					statement.setString(3, "Boring");
+					statement.setString(3, appointment.getReason().toString());
 					statement.setTimestamp(4, appointment.getTime());
 					statement.setInt(5, appointment.getDuration());
 					statement.setString(6, appointment.getComments());
