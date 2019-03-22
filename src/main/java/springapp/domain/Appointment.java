@@ -56,6 +56,11 @@ public class Appointment {
 
 	public Integer getClientId() {
 		return clientId;
+	}
+
+	public Integer getDuration() {
+		// TODO Auto-generated method stub
+		return duration;
 	}	
 	
 }

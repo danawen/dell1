@@ -43,6 +43,8 @@ public class AppointmentCommand {
 		this.id = id;
 	}
 
+
+	
 	public Integer getPetId() {
 		return petId;
 	}
