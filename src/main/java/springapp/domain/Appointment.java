@@ -64,8 +64,5 @@ public class Appointment {
 	public Integer getDuration() {
 		return this.duration;
 	}
-
-	public Integer getDuration() {
-		return duration;
 	
 }
