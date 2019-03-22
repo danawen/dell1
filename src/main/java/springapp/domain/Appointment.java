@@ -38,14 +38,6 @@ public class Appointment {
 		this.time = apptDateTime;
 	}
 
-	public Integer getDuration() {
-		return duration;
-	}
-
-	public void setDuration(Integer apptDuration) {
-		this.duration = apptDuration;
-	}
-
 	public String getComments() {
 		return comments;
 	}
@@ -64,8 +56,6 @@ public class Appointment {
 
 	public Integer getClientId() {
 		return clientId;
-	}
-
-	
+	}	
 	
 }
