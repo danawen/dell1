@@ -28,16 +28,20 @@ import springapp.service.PetService;
 @Controller
 @RequestMapping("/appointments")
 public class AppointmentController {
-	
-	private Logger logger = LoggerFactory.getLogger(PetController.class);
+
+	private Logger logger = LoggerFactory.getLogger(AppointmentController.class);
 
 	// injecting in an AppointmentService instance
     @Autowired
 	AppointmentService appointmentService;
-	
+
 	@GetMapping
-	public String get(Model model) {
+	public String getAppointments(Model model) {
+
+		 List<Appointment> appointments = appointmentService.getAppointments();
+			model.addAttribute("appointments", appointments);
         return "appointments/listAppointments";
+
    }
 
 	 /**
@@ -47,13 +51,32 @@ public class AppointmentController {
      */
 	 @PreAuthorize("hasAuthority('SAVE_APPOINTMENT')")
 	 @GetMapping("/new")
-	 public String getClient(String id, Model model) {
-	
-		model.addAttribute("command", new AppointmentCommand(null));	
-		
+		 public String getAppointment(@PathVariable("id") String id, Model model) {
+
+
+		 // we could have used a different path for handling the create page but this approach uses the same
+        // template for both creating a new client and editing and existing client
+	    if(id.equals("new")) {
+	        // create an empty command object to merge with the view template
+			model.addAttribute("command", new AppointmentCommand(null));
+		} else {
+	        // since we have a valid id, get the client object from the service
+			Appointment appointment = appointmentService.getAppointment(id);
+			// we create a client command that can be used when the browser sends the save object
+			model.addAttribute("command", new AppointmentCommand(appointment));
+
+			// we get the list of pets, and send those as is since we dont need a command to carry changes to the pets
+            // from this page
+			model.addAttribute("pet", appointmentService.getPet(appointment.getPetId()) );
+			model.addAttribute("client", appointmentService.getClient(appointment.getClientId()) );
+		//	model.addAttribute("client", appointmentService.getClient(appointment.getId()) );
+		}
+
+		model.addAttribute("command", new AppointmentCommand(null));
+
 		return "appointments/addAppointment";
 	}
-	
+
     /**
      * Create a new appointment
      * @param command the command to get the appointment info from
@@ -73,7 +96,7 @@ public class AppointmentController {
         return "redirect:/appointments/";    //TODO: +appointment.getId();
 
     }
-	
-	
-	
+
+
+
 }
