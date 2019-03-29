@@ -34,8 +34,8 @@ public class Appointment {
 		return time;
 	}
 
-	public void setTime(Timestamp apptDateTime) {
-		this.time = apptDateTime;
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 
 	public String getComments() {
@@ -66,11 +66,5 @@ public class Appointment {
 		return duration;
 	}	
 	
-	public Integer getDuration() {
-		return this.duration;
-	}
-
-	public Integer getDuration() {
-		return duration;
 	
 }
