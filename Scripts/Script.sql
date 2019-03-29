@@ -1,1 +1,1 @@
-select id, pet_id, client_id, reason, appt_time, duration, comments from appointments
+INSERT into users values (null, 'client', 'clientPass', 'CLIENT_ONLY');
