@@ -28,9 +28,13 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="reason">Reason</label>
-	            <input id="reason" name="reason" type="text" class="form-control" data-th-field="*{reason}">
-			</div>
+				<label for="reason">Reason</label>			
+				<select id = "reason" name = "reason" type="select" class="form-control" th:field="*{reason}">
+					 <option th:each="reason : ${reasons}" 
+					         th:value="${reason}" 
+					         th:text="${reason}">Reason</option>
+				</select>
+			</div>				
 			
 			<div class="form-group">
 				<label for="duration">Duration</label>
