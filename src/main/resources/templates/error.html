@@ -2,10 +2,18 @@
 <html>
 <header th:replace="fragments/head.html :: head" >
 </header>
-<body style="background: url('C:/Users/Sujan_Aryal/Desktop/AustinCodingAca/spring-app/src/main/resources/static/img/background.jpg')";
->
-    <div class="jumbotron error">
-    	<p class="lead">Error!! Page not found!</p>
-    </div>
+<body>
+
+<div class="container-fluid" >
+		<div class="row">
+			<header th:replace="fragments/header.html :: header" >
+			</header>
+		    <div class="jumbotron error col-md-10 col-sm-10">
+		    	<h3>Error!! Page not found!</h3>
+		    	<p class="lead">
+		    	Please select valid page.
+		    	</p>
+		    </div>
+	    </div>
 </body>
 </html>
