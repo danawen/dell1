@@ -30,6 +30,7 @@ public class AppointmentService {
 	ClientDao clientDao;
 	
 
+	
 
 	public Appointment getAppointment(String id) {
 		return appointmentDao.get(Integer.parseInt(id));
@@ -53,6 +54,7 @@ public class AppointmentService {
 		return appointmentDao.list();
 		
 	}
+	
 	
 	public Appointment saveAppointment(AppointmentCommand command) {
 		Appointment newAppointment = new Appointment(command.getId(), command.getPetId(), command.getClientId(), command.getReason(), command.getTime(), command.getDuration(), command.getComments());

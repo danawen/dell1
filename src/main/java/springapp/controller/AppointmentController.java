@@ -1,6 +1,7 @@
 package springapp.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import springapp.command.PetCommand;
 import springapp.domain.Appointment;
 import springapp.domain.Client;
 import springapp.domain.Pet;
+import springapp.domain.Reason;
 import springapp.service.AppointmentService;
 import springapp.service.PetService;
 
@@ -52,6 +54,7 @@ public class AppointmentController {
 	 @PreAuthorize("hasAuthority('SAVE_APPOINTMENT')")
 	 @GetMapping("/new")
 		 public String addAppointment(Model model) {
+//			Appointment appointment = appointmentService.getAppointment(id);
 
 
 		 // we could have used a different path for handling the create page but this approach uses the same
@@ -71,7 +74,9 @@ public class AppointmentController {
 //			model.addAttribute("client", appointmentService.getClient(appointment.getClientId()) );
 //		//	model.addAttribute("client", appointmentService.getClient(appointment.getId()) );
 //		}
-
+		 
+//		 model.addAttribute("petName", appointmentService.getPet(appointment.getPetId()).getName() );
+//			model.addAttribute("clientName", appointmentService.getClient(appointment.getClientId()).getName() );
 		model.addAttribute("command", new AppointmentCommand(null));
 
 		return "appointments/addAppointment";
@@ -88,8 +93,8 @@ public class AppointmentController {
 
 			// we get the list of pets, and send those as is since we dont need a command to carry changes to the pets
             // from this page
-			model.addAttribute("pet", appointmentService.getPet(appointment.getPetId()) );
-			model.addAttribute("client", appointmentService.getClient(appointment.getClientId()) );
+			model.addAttribute("petName", appointmentService.getPet(appointment.getPetId()).getName() );
+			model.addAttribute("clientName", appointmentService.getClient(appointment.getClientId()).getName() );
 		//	model.addAttribute("client", appointmentService.getClient(appointment.getId()) );
 		
 		return "appointments/editAppointment";
