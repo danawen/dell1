@@ -74,18 +74,20 @@ public class AppointmentController {
 //			model.addAttribute("client", appointmentService.getClient(appointment.getClientId()) );
 //		//	model.addAttribute("client", appointmentService.getClient(appointment.getId()) );
 //		}
-		 
+
 //		 model.addAttribute("petName", appointmentService.getPet(appointment.getPetId()).getName() );
 //			model.addAttribute("clientName", appointmentService.getClient(appointment.getClientId()).getName() );
 		model.addAttribute("command", new AppointmentCommand(null));
+		model.addAttribute("reasons", reasons);
+
 
 		return "appointments/addAppointment";
 	}
-	 
+
 	 @PreAuthorize("hasAuthority('GET_APPOINTMENT')")
 	 @GetMapping("/edit/{id}")
 		 public String getAppointment(@PathVariable("id") String id, Model model) {
-		
+
 	        // since we have a valid id, get the client object from the service
 			Appointment appointment = appointmentService.getAppointment(id);
 			// we create a client command that can be used when the browser sends the save object
@@ -96,10 +98,10 @@ public class AppointmentController {
 			model.addAttribute("petName", appointmentService.getPet(appointment.getPetId()).getName() );
 			model.addAttribute("clientName", appointmentService.getClient(appointment.getClientId()).getName() );
 		//	model.addAttribute("client", appointmentService.getClient(appointment.getId()) );
-		
+
 		return "appointments/editAppointment";
-	} 
-	 
+	}
+
 
     /**
      * Create a new appointment
@@ -120,7 +122,7 @@ public class AppointmentController {
         return "redirect:/appointments/";    //TODO: +appointment.getId();
 
     }
-	
+
 	@PreAuthorize("hasAuthority('DELETE_APPOINTMENT')")
 	 @GetMapping("/delete/{id}")
 	 public String deleteAppointment(@PathVariable("id") String id, RedirectAttributes redirectAttributes) {

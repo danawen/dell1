@@ -1,1 +1,0 @@
-INSERT into users values (null, 'client', 'clientPass', 'CLIENT_ONLY');
