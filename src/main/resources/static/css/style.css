@@ -25,8 +25,13 @@
 	color: white;
 }
 
-.error p {
+.error h3 {
 	background: #007db8;
+	padding: 40px;
+}
+
+.error .lead {
+	color: grey;
 }
 
 .loginControl {
@@ -35,4 +40,8 @@
 
 .loginControl .row {
 	margin: 10px;
+}
+
+.add-button {
+	padding: 10px;
 }
