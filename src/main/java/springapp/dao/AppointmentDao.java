@@ -100,11 +100,9 @@ public class AppointmentDao {
 			id = holder.getKey().intValue();
 			
 		} else {
-			//TODO: WRITE CODE FOR APPOINT UPDATE 
-			
-			// notice that we do not update the client id since we do not want to enable pet transfer from this method
-			//jdbcTemplate.update("UPDATE pets SET name = ?, gender = ? , altered = ?  WHERE id = ?",
-			//		new Object[] {appointment.getName(), appointment.getGender(), appointment.isAltered(), id});
+			jdbcTemplate.update("UPDATE appointments SET pet_id = ?, client_id = ? , reason = ?, appt_time = ?, duration = ?, comments = ? WHERE id = ?",
+					new Object[] { appointment.getPetId(), appointment.getClientId(), appointment.getReason(), appointment.getTime(), appointment.getDuration(), appointment.getComments(), id});
+
 		}
 		
 		logger.info("Appointment " + id + " saved to DB");
@@ -112,7 +110,12 @@ public class AppointmentDao {
 	}
 	
 	//TODO:
-	//public void delete(int id) {
-				
-	//}
+	public void delete(int id) {
+		jdbcTemplate.update("DELETE FROM appointments WHERE id = ?",
+				new Object[] {id});
+		
+		
+		jdbcTemplate.update("DELETE FROM appointments WHERE id = ?",
+				new Object[] {id});
+	}
 }

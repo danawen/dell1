@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ch.qos.logback.classic.Logger;
 import springapp.command.AppointmentCommand;
 import springapp.command.PetCommand;
 import springapp.dao.AppointmentDao;
@@ -38,8 +39,14 @@ public class AppointmentService {
 		return appointmentDao.get(id);
 	}
 
-	//TODO: Delete Appointment
+	public void deleteAppointment(Integer id) {
+		appointmentDao.delete(id);
+	}
 
+
+	public void deleteAppointment(String id) {
+		appointmentDao.delete(Integer.parseInt(id));
+	}
 
 	
 	public List<Appointment> getAppointments(){
