@@ -23,11 +23,8 @@ public class AppointmentService {
 	@Autowired
 	AppointmentDao appointmentDao;
 
-	@Autowired
+	@Autowired 
 	PetDao petDao;
-
-
-
 
 	public Appointment getReason(String id) {
 		return appointmentDao.get(Integer.parseInt(id));
@@ -63,14 +60,13 @@ public class AppointmentService {
 	}
 
 
-	public Pet getPet(int petId) {
+	/*public Pet getPet(int petId) {
 
 		return petDao.get(petId);
+	}*/
+	
+	public List<Pet> getPets() {
+		return petDao.list();
 	}
 
-
-	public Client getClient(int clientId) {
-
-		return clientDao.get(clientId);
-	}
 }
