@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import springapp.appointments.Appointment;
 import springapp.appointments.Reason;
@@ -25,7 +26,7 @@ public class AppointmentCommand {
 	private Integer clientId;
 	private Reason reason;
 	private Timestamp dateTime;
-	private Integer duration;
+	private String duration;
 	private String comments;
 	
 	private String clientName;
@@ -46,7 +47,7 @@ public class AppointmentCommand {
 			this.clientId = appointment.getClientId();
 			this.reason = appointment.getReason();
 			this.dateTime = appointment.getTime();
-			this.duration = appointment.getDuration();
+			this.duration = appointment.getDuration().toString();
 			this.comments = appointment.getComments();
 
 		}
@@ -97,12 +98,21 @@ public class AppointmentCommand {
 		this.dateTime = time;
 	}
 
-	public Integer getDuration() {
-		return duration;
+	public String getDuration() {
+		int hour = Integer.parseInt(duration) / 60;
+		int minute = Integer.parseInt(duration) % 60;
+
+		
+		String durationString = hour + "hrs " + minute + "mins.";
+		return durationString;
+	}
+	
+	public Integer getDurationInt() {
+		return Integer.parseInt(duration);
 	}
 
 	public void setDuration(Integer duration) {
-		this.duration = duration;
+		this.duration = duration.toString();
 	}
 
 	public String getComments() {

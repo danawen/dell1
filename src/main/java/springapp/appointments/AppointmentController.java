@@ -1,4 +1,4 @@
-package springapp.appointments;
+		package springapp.appointments;
 
 
 import java.util.Date;
@@ -84,6 +84,13 @@ public class AppointmentController {
 	 @GetMapping("/new")
 		 public String addAppointment(Model model) {
 		 
+		 	int[] hours = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+			int[] minutes = {0, 15, 30, 45};		
+			
+			model.addAttribute("hours", hours);
+			
+			model.addAttribute("minutes", minutes);
+		 
 		 List<String> reasons = new ArrayList<String>();
 		 
 		 for (Reason reason: Reason.values()) {
@@ -153,9 +160,12 @@ public class AppointmentController {
      */
 	@PreAuthorize("hasAuthority('SAVE_APPOINTMENT')")
 	@PostMapping
-	 public String saveAppointment(@RequestParam(value = "time") String time, @RequestParam(value = "date") String date, AppointmentCommand command, RedirectAttributes redirectAttributes) throws ParseException {
+	 public String saveAppointment(@RequestParam(value = "time") String time, @RequestParam(value = "date") String date, 
+			 @RequestParam(value = "hour") int hour, @RequestParam(value = "minute") int minute,
+			 AppointmentCommand command, RedirectAttributes redirectAttributes) throws ParseException {
 		
-		command.setDateTime(processTime(time, date));		
+		command.setDateTime(processTime(time, date));	
+		command.setDuration(hour*60 + minute);
 		
 		appointmentService.saveAppointment(command);
         redirectAttributes.addAttribute("saved", true);
