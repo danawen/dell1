@@ -154,14 +154,16 @@ public class PetController {
      */
 	@PreAuthorize("hasAuthority('SAVE_PET')")
 	@PostMapping
-	 public String savePet(PetCommand command, RedirectAttributes redirectAttributes) {
-		
+	 public String savePet(PetCommand command, RedirectAttributes redirectAttributes, boolean fromClientPage) {
+
         // we pass in the pet command to the service to update or create a new pet
         Pet pet = petService.savePet(command);
 
 
         redirectAttributes.addAttribute("saved", true);
-        
+        if(fromClientPage) {
+            redirectAttributes.addAttribute("clientId", pet.getClientId());
+        }
         return "redirect:/pets/";
 
     }

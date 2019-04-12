@@ -129,7 +129,7 @@ public class AppointmentController {
 
 	 @PreAuthorize("hasAuthority('GET_APPOINTMENT')")
 	 @GetMapping("/edit/{id}")
-		 public String getAppointment(@PathVariable("id") String id, Model model) {
+		 public String getAppointment(@PathVariable("id") String id, Model model) throws ParseException {
 
 	        // since we have a valid id, get the appointment object from the service
 			Appointment appointment = appointmentService.getAppointment(id);
@@ -147,6 +147,12 @@ public class AppointmentController {
 			model.addAttribute("command", new AppointmentCommand(appointment));
 			model.addAttribute("petName", petService.getPet(appointment.getPetId()).getName());
 			model.addAttribute("clientName", clientService.getClient(appointment.getClientId()).getName());
+			
+			
+			
+			model.addAttribute("date","asdd" );
+			
+			model.addAttribute("time",appointment.getTime() );
 
 			
 
