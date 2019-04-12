@@ -57,18 +57,21 @@ public class AppointmentController {
 //		 List<Appointment> appointments = appointmentService.getAppointments();
 			
 			List<AppointmentCommand> appointmentCommands = new ArrayList<AppointmentCommand>();
-			 
-			 for (Appointment appointment: appointmentService.getAppointments()) {
-				 			 
-				 AppointmentCommand command = new AppointmentCommand(appointment);	
-				 command.setPetName(petService.getPet(appointment.getPetId()).getName());
+			 if (appointmentService.getAppointments() != null) {
+				 for (Appointment appointment: appointmentService.getAppointments()) {
+		 			 
+					 AppointmentCommand command = new AppointmentCommand(appointment);	
+					 command.setPetName(petService.getPet(appointment.getPetId()).getName());
 
-				 command.setClientName(clientService.getClient(appointment.getClientId()).getName());
+					 command.setClientName(clientService.getClient(appointment.getClientId()).getName());
+					 
+					 appointmentCommands.add(command);
+				 }
 				 
-				 appointmentCommands.add(command);
 			 }
 			 
 				model.addAttribute("appointments", appointmentCommands);
+				model.addAttribute("nullApptCommand", new AppointmentCommand(null));
 
 			
         return "appointments/listAppointments";
@@ -126,7 +129,7 @@ public class AppointmentController {
 
 	 @PreAuthorize("hasAuthority('GET_APPOINTMENT')")
 	 @GetMapping("/edit/{id}")
-		 public String getAppointment(@PathVariable("id") String id, Model model) {
+		 public String getAppointment(@PathVariable("id") String id, Model model) throws ParseException {
 
 	        // since we have a valid id, get the appointment object from the service
 			Appointment appointment = appointmentService.getAppointment(id);
@@ -144,6 +147,12 @@ public class AppointmentController {
 			model.addAttribute("command", new AppointmentCommand(appointment));
 			model.addAttribute("petName", petService.getPet(appointment.getPetId()).getName());
 			model.addAttribute("clientName", clientService.getClient(appointment.getClientId()).getName());
+			
+			
+			
+			model.addAttribute("date","asdd" );
+			
+			model.addAttribute("time",appointment.getTime() );
 
 			
 
@@ -191,19 +200,20 @@ public class AppointmentController {
         return "redirect:/appointments";
    }
 	
-	private Timestamp processTime(String time, String date) {
+	private Date processTime(String time, String date) {
 		
-		String timeDate = date + time;
+		String timeDate = date + " " + time.toUpperCase();
 		DateFormat outputFormat;
 		
-		if (time.indexOf('a') > -1) {
+		/*if (time.indexOf('a') > -1) {
 			outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:01", Locale.US);
 		}
 		else {
 			outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:00", Locale.US);
-		}
+		}*/
 		
-		DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm a", Locale.US);
+		DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aaa", Locale.US);
+		
 
 		Date dateMod = null;
 		try {
@@ -211,15 +221,13 @@ public class AppointmentController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		String outputText = outputFormat.format(dateMod);
-		
-		logger.error("OUTPUT" + outputText);
+		logger.error("OUTPUT " + dateMod.toString());
+
+				
 		
 		// make sure the seconds are set before parsing
-		
-		Timestamp value = Timestamp.valueOf(outputText);
-		
-		return value;
+				
+		return dateMod;
 	}
 
 
