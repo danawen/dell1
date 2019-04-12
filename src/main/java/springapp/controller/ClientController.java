@@ -45,6 +45,8 @@ public class ClientController {
 	 public String listClients(Model model) {
         List<Client> clients = clientService.getClients();
 		model.addAttribute("clients", clients);
+		model.addAttribute("command", new ClientCommand(null));	
+		
         return "clients/listClients";
     }
 	 
@@ -101,7 +103,7 @@ public class ClientController {
 		 redirectAttributes.addAttribute("saved", true);
 
 
-	     return "redirect:/clients/"+client.getId();
+	     return "redirect:/clients/";
 		  
      }
 

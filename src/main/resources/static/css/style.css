@@ -34,6 +34,10 @@ body{
 	padding: 40px;
 }
 
+#petsFor:before {
+	content: "Pets for ";
+}
+
 .error .lead {
 	color: grey;
 }
@@ -93,4 +97,20 @@ body{
 
 .mainContent {
 	
+}
+
+.saveCancel button {
+	margin: 10px;
+}
+
+.addPetButton {
+	margin: 10px auto;	
+}
+
+#petList {
+	background: #343a40;
+}
+
+#petList table {
+	color: white!important;
 }

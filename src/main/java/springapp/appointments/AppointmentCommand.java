@@ -25,7 +25,7 @@ public class AppointmentCommand {
 	private Integer petId;
 	private Integer clientId;
 	private Reason reason;
-	private Timestamp dateTime;
+	private Date dateTime;
 	private String duration;
 	private String comments;
 	
@@ -87,14 +87,22 @@ public class AppointmentCommand {
 	public void setReason(Reason reason) {
 		this.reason = reason;
 	}
-
-	public Timestamp getDateTime() {
+	
+	public Date getDateTime() {
 				
 		return dateTime;
 		
 	}
+	
+	public String getDateTimeString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm aaa");
+		return formatter.format(dateTime);
+		
+		
+	}
 
-	public void setDateTime(Timestamp time) {
+
+	public void setDateTime(Date time) {
 		this.dateTime = time;
 	}
 
